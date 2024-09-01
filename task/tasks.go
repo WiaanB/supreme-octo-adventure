@@ -20,6 +20,11 @@ func (t *Task) String() string {
 type List []Task
 
 func (l *List) Add(task string) {
+	if len(task) == 0 {
+		fmt.Println("task cannot be empty")
+		return
+	}
+
 	findLargeId := func() int {
 		largestId := 0
 		for _, t := range *l {
@@ -96,6 +101,7 @@ func (l *List) List(listType string) {
 			fmt.Println("no tasks set to 'todo'")
 			return
 		}
+		printList(todos)
 	case "in-progress":
 		inProgress := make([]Task, 0)
 		for _, t := range *l {
@@ -107,6 +113,7 @@ func (l *List) List(listType string) {
 			fmt.Println("no tasks set to 'in-progress'")
 			return
 		}
+		printList(inProgress)
 	case "done":
 		done := make([]Task, 0)
 		for _, t := range *l {
@@ -118,9 +125,14 @@ func (l *List) List(listType string) {
 			fmt.Println("no tasks set to 'done'")
 			return
 		}
+		printList(done)
 	default:
-		for _, t := range *l {
-			fmt.Printf("%s\n", t.String())
-		}
+		printList(*l)
+	}
+}
+
+func printList(l List) {
+	for _, t := range l {
+		fmt.Printf("%s\n", t.String())
 	}
 }

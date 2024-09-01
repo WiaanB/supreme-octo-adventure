@@ -1,5 +1,5 @@
 # task-tracker
-A simple task tracker CLI tool built with Go
+A simple [task tracker](https://roadmap.sh/projects/task-tracker) CLI tool built with Go
 
 ## Installation
 ```bash
